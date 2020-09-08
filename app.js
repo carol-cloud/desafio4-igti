@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import {gradeRouter} from './routes/gradeRouter.js';
 
 import { db } from './models/index.js';
 
@@ -10,8 +11,9 @@ import { db } from './models/index.js';
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+    console.log("Conectado ao Mongo DB Atlas")
   } catch (error) {
-    process.exit();
+    console.log("Erro ao conectar ao Mongo DB Atlas");
   }
 })();
 
@@ -30,4 +32,8 @@ app.get('/', (req, res) => {
   res.send('API em execucao');
 });
 
-app.listen(process.env.PORT || 8081, () => {});
+app.use(gradeRouter);
+
+app.listen(process.env.PORT || 8081, () => {
+  console.log ('API iniciada')
+});
