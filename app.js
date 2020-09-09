@@ -23,9 +23,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
-  cors({
-    origin: 'https://desafio-4-backend.herokuapp.com/',
-  })
+  cors()
 );
 
 app.get('/', (req, res) => {
